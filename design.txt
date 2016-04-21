@@ -1,0 +1,20 @@
+Design Document-
+This program stores player information in a struct, then contains the inputted structs in a map
+The map was chosen over all other containers because of the way the information is stored.
+A map stores keys in alphabetical order, which made it ideal to store the players because they needed to be stored aplhabetically.
+A map uses keys and is very easy to search. THis made it ideal to search for a player if their name was a key.
+The program stores the player information in a map using the player’s name as the key, and the player’s struct as the element.
+The program has five main functions. The use of each function is detailed in the program spec.
+The user interface is its own function.
+The user interface is stored in its own header file.
+The program uses switch statements, making it easy for the user to use and for any other coder to understand.
+A linked list might have been used as opposed to the map, but the pros of a map outweighed the pros of the linked list.
+
+
+The data structure “player” contains data members called name, birthYear, category, and regStatus in order to store a player’s name,
+year of birth, category, and registration status.
+  o name is stored as a string, as a name is a sequence of ordered characters.
+  o birthYear is stored as an unsigned integer, as one’s birth year must be a nonnegative number.
+  o category is a string, as the different player categories are sequences of characters.
+  o regStatus is a boolean variable; A value of True denotes “payed”, while False denotes “unpayed” status.
+
