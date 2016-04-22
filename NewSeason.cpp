@@ -5,9 +5,9 @@ int NewSeason(){
     char choice;
     string string_year;
 
-    m.empty();
-        if (m.empty() != true){
-            m.clear();
+    playerM.empty();
+        if (playerM.empty() != true){
+            playerM.clear();
         }
 
     cout << "Do you wish to delete previous season's file? (Y/N) ";
@@ -27,7 +27,7 @@ int NewSeason(){
                 i=0;
             }
         }
-        curr_year = atoi(string_year.c_str());
+        now = atoi(string_year.c_str());
 
 
         outfile.open ("Season.txt");
