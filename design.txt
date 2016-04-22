@@ -10,11 +10,26 @@ The user interface is stored in its own header file.
 The program uses switch statements, making it easy for the user to use and for any other coder to understand.
 A linked list might have been used as opposed to the map, but the pros of a map outweighed the pros of the linked list.
 
+player:
+The data structure “player” contains data members called name, birthYear, category, and regStatus in order to store a player’s name, year of birth, category, and registration status.
+o name is stored as a string, as a name is a sequence of ordered characters.
+o birthYear is stored as an unsigned integer, as one’s birth year must be a nonnegative number.
+o category is an integer, which represents the “X” of the category ”UX.”
+o regStatus is a boolean variable; A value of True denotes “payed”, while False denotes “unpayed” status.
+This implementation is highly simple, and the lack of complexity makes it ideal for a modular, team-built program.
 
-The data structure “player” contains data members called name, birthYear, category, and regStatus in order to store a player’s name,
-year of birth, category, and registration status.
-  o name is stored as a string, as a name is a sequence of ordered characters.
-  o birthYear is stored as an unsigned integer, as one’s birth year must be a nonnegative number.
-  o category is a string, as the different player categories are sequences of characters.
-  o regStatus is a boolean variable; A value of True denotes “payed”, while False denotes “unpayed” status.
+addPlayer():
+The void function addPlayer() uses console input and output streams  to create a new player data structure instance based off of user input.
+	First, it declares a string nameIn. This will be the inputted name, which is brought in using std::getline(). Then, yearIn (Inputted birth year), is brought in as a string. The string is then parsed through by a for loop, which searches for non-integer characters, and, if it finds any, explains that the input didn’t work and lets the user input try inputting birth year again. Next, the user is asked if the new player has paid their registration fee - the answer in brought in as a Y or N character, and the program makes the user try again if the character is neither a Y/y or N/n character. Of course, Y denotes “yes” and N denotes “No”.
+The function then checks the age of the new player, which equals the difference between the global variable “now” (Which is the current season’s year) and the player’s inputted birth year. If a player is under 4 or over 16 years old, the function tells the user that the player is unable to play soccer and DOES NOT write a new player to the map. This is because it would be disingenuous to add an invalid player to the list of players. The player is placed in an appropriate category based on their age, if it was valid.
+Finally, the new player must be written to the map. To do this, the function uses the player’s inputted name as both a key and as the name value of the player.name string in the new map object, while the user’s inputted birth years and registration statuses are stored as the player.birthYear and player.regStatus variables. The player’s category is registered based on the function’s automatic assignment.
+This implementation takes in the data for a new player as local variables so that it can perform operations and error handling on the data before creating a new map object. It is highly modular and requires no arguments, and has no return value. (Though it does modify the global map playerMap.)
 
+
+
+
+
+lookUp:
+The function lookUp() allows the user to read the entry for an extant player. When the function is called, it uses cin to obtain the variable lookName, representing the name of the player that the user wants, and also, conveniently, the registry key of said player. If the function cannot find a player with the name the user inputted, it explains that the inputted player name does not match any entries and breaks out of the function without printing any information. 
+Else, the function uses the inputted name as a map key to print out the assigned player’s information with cout, accessing the information using “playerMap[lookName].(variable needed)”. 
+This implementation is simple and functional, and contains error handling as part of the function. It takes no arguments and returns no values, and is only dependant on the existence of an accessible map playerMap. 
