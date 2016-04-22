@@ -1,33 +1,41 @@
 int NewSeason(){
     /*Makes file, deletes data in file if
-    there is already data in there*/
+    user wants it deleted*/
     ofstream outfile;
-    string file_name;
     char choice;
+    string string_year;
 
     m.empty();
         if (m.empty() != true){
             m.clear();
-            cout << "Map Cleared" << endl;
-        } else {
-            cout << "Map Empty" << endl;
         }
 
-    cout << "Do you wish to delete previous season's file? (Y/N)";
+    cout << "Do you wish to delete previous season's file? (Y/N) ";
     cin >> choice;
 
-    if ((choice = 'Y') || (choice = 'y')){
+    if ((choice == 'N') || (choice == 'n')){
+        return 0;
+    } else if ((choice == 'Y') || (choice == 'y')){
         std::remove("Season.txt");
-    }
+        cout << "Year: " << endl;
+        cin >> string_year;
 
-    outfile.open ("Season.txt");
-        for (map<string, Player> :: iterator itr = m.begin(); itr != m.end(); ++itr){
-            outfile << itr -> first << endl << itr -> second.b_year << endl << itr -> second.category << endl << itr -> second.registered << endl;
+        for(int i = 0; i < string_year.length(); i++){
+            while (!isdigit(string_year.at(i))){
+                cout << "Year: " << endl;
+                cin >> string_year;
+                i=0;
+            }
+        }
+        curr_year = atoi(string_year.c_str());
+
+
+        outfile.open ("Season.txt");
+
+        if (!outfile.is_open()){
+            cout << "File could not open." << endl;
         }
 
-    if (!outfile.is_open()){
-        cout << "File could not open." << endl;
-    }
-
-    return 0;
-    }
+        return 1;
+        }
+}
