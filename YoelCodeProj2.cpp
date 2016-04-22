@@ -23,14 +23,20 @@ std::map<std::string, player> playerMap;
 void addPlayer(){
     std::string nameIn;
     std::cout<<"Please input the player's name"<<std::endl;
-//    std::cin.clear();
     std::cin.ignore();
     std::getline(std::cin, nameIn);
 
+
+    tryname:
     std::cout<<"What year was this player born in?"<<std::endl;
-    unsigned int yearIn;
+    std::string yearIn;
     std::cin>>yearIn;
-    //Error checking here
+    for(int i = 0; i < yearIn.length(); i++){
+	if(isdigit(yearIn[i])==false){
+	    std::cout<<"Your year contained non-integer characters. Have another try!"<<std::endl;
+	    goto tryname;
+	}
+    };
 
     std::cout<<"Has this player payed their dues? (Y/N)"<<std::endl;
     char yn = 'Q';
@@ -43,7 +49,15 @@ void addPlayer(){
 	registered = false;
     };
 
-    int age = (now-yearIn);
+    int age = (now-stoi(yearIn));
+    
+    if(age<4){
+	std::cout<<"This person is much too young to play soccer. Can't add them, sorry."<<std::endl;
+	return;
+    }else if(age>16){
+	std::cout<<"This person is far too ancient to play soccer. Cant add them, sorry."<<std::endl;
+	return;
+    };
     int _category;
     //Error handling for age
     if((age > 4) && (age <6)){
@@ -63,7 +77,7 @@ void addPlayer(){
 
 
     playerMap[nameIn].name = nameIn;
-    playerMap[nameIn].birthYear = yearIn;
+    playerMap[nameIn].birthYear = stoi(yearIn);
     playerMap[nameIn].category = _category;
     playerMap[nameIn].regStatus = registered;
 
@@ -84,7 +98,7 @@ void lookUp(){
     if(playerMap[lookName].regStatus == true){
 	std::cout<<"Registered!"<<std::endl;
     }else{
-	std::cout<<"Not Registered. This player must pay their dues..." <<std::endl;
+	std::cout<<"Not Registered." <<std::endl;
     }
 
 }
