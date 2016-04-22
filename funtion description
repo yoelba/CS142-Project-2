@@ -1,0 +1,2 @@
+NewSeason(): asks for the year, creates a file and deletes any information already held in the map, and erases a previous document. Saves the files as text documents.
+EditPlayer: which allows the user to edit the player’s information. Erases previous entry and intakes the new information
