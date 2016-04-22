@@ -38,15 +38,18 @@ void addPlayer(){
 	}
     };
 
+    YNcheck:
     std::cout<<"Has this player payed their dues? (Y/N)"<<std::endl;
     char yn = 'Q';
     bool registered;
     std::cin>>yn;
-    //More error checking here
     if(yn=='Y' || yn == 'y'){
 	registered = true;
     }else if(yn == 'N' || yn == 'n'){
 	registered = false;
+    }else{
+	std::cout<<"That was not a good character. Input Y or N!"<<std::endl;
+	goto YNcheck;
     };
 
     int age = (now-stoi(yearIn));
@@ -59,7 +62,6 @@ void addPlayer(){
 	return;
     };
     int _category;
-    //Error handling for age
     if((age > 4) && (age <6)){
 	_category = 6;
     }else if(age<8){
@@ -73,7 +75,6 @@ void addPlayer(){
     }else if(age<17){
 	_category = 17;
     }
-    //Error handling for age again
 
 
     playerMap[nameIn].name = nameIn;
@@ -90,7 +91,10 @@ void lookUp(){
     std::cin.clear();
     std::cin.ignore();
     std::getline(std::cin, lookName);
-    std::cout<<lookName<<std::endl;
+    if(playerMap.find(lookName)==playerMap.end()){
+	std::cout<<"This player doesn't exist, man!"<<std::endl;
+	return;
+    };
     std::cout<<"Player's Name: "<<playerMap[lookName].name<<std::endl;
     std::cout<<"Player Birth Year: "<<playerMap[lookName].birthYear<<std::endl;
     std::cout<<"Player's Category: U"<<playerMap[lookName].category<<std::endl;
