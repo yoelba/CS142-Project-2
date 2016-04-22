@@ -9,7 +9,8 @@ void EditPlayer(){
     cin >> answer;
     if ((answer == "YES")||(answer == "yes")||("Yes")){
         cout << "Player name?" << endl;
-        cin >> p.name;
+        cin.ignore();
+        std::getline(cin, p.name);
         itr = m.find(p.name);
         m.erase (itr);
         cout << "Please enter new information." << endl;
