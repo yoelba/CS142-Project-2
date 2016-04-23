@@ -37,7 +37,7 @@ the void function EditPlayer() allows the user to edit the player’s informatio
 	o if user wishes to change the player, the function uses standard console input and output to get the name of the player the user wishes to edit.
 	o the program then erases the map entry with a matching key and calls addPlayer to remake the map entry
 	o if the user does not wish to edit player, then function cout >> "No Changes Made"
-
+	o if the player is not in the system the funtion couts a message saying so then returns to the main program
 
 lookUp:
 The function lookUp() allows the user to read the entry for an extant player. When the function is called, it uses cin to obtain the variable lookName, representing the name of the player that the user wants, and also, conveniently, the registry key of said player. If the function cannot find a player with the name the user inputted, it explains that the inputted player name does not match any entries and breaks out of the function without printing any information. 
