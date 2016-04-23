@@ -26,7 +26,17 @@ Finally, the new player must be written to the map. To do this, the function use
 This implementation takes in the data for a new player as local variables so that it can perform operations and error handling on the data before creating a new map object. It is highly modular and requires no arguments, and has no return value. (Though it does modify the global map playerMap.)
 
 
+NewSeason(): 
+the int function NewSeason() confirms with user that they wish to erase previous season's file using console input and output.
+	o if they deny, function returns 0
+	o if they agree, the function clears the map, erases the text file from the previous season using std::remove
+	the funtion then asks for the year, and creates a new text file.
 
+EditPlayer: 
+the void function EditPlayer() allows the user to edit the player’s information. It uses standard counsole input and output to confirm user wishes to edit player.
+	o if user wishes to change the player, the function uses standard console input and output to get the name of the player the user wishes to edit.
+	o the program then erases the map entry with a matching key and calls addPlayer to remake the map entry
+	o if the user does not wish to edit player, then function cout >> "No Changes Made"
 
 
 lookUp:
