@@ -62,12 +62,12 @@ void inputData()
         {
             // get values
             getline(fin, temp_name);
-            std::cin >> temp_yob;
-            std::cin.get(); //endline removal
-            std::cin >> temp_category;
-            std::cin.get();
-            std::cin >> temp_regstat;
-            std::cin.get();
+            fin >> temp_yob;
+            fin.get(); //endline removal
+            fin >> temp_category;
+            fin.get();
+            fin >> temp_regstat;
+            fin.get();
 
             playerMap[ temp_name ].name = temp_name;
             playerMap[ temp_name ].birthYear = temp_yob;
@@ -81,8 +81,6 @@ void inputData()
 void outputData()
 {
     std::ofstream fout;
-    if( std::remove( "data.txt" ) != 0 ) std::perror( "Error deleting file" );
-    else std::puts( "File successfully deleted" );
 
     fout.open("data.txt");
 
@@ -254,20 +252,25 @@ void EditPlayer(){
 
 int generateList()
 {
+
     int temp_categ;
+    std::string cat_input;
 
     // Get a proper category
     trycategory:
     std::cout << "What category would you like to draw from (ie. U6, U8, U10) ... ";
+    std::cin.clear();
+    std::cin.ignore();
+    std::cin >> cat_input;
 
     //input check
-    char ucheck = std::cin.get();
+    char ucheck = cat_input[0];
     if ( ucheck != 'U' && ucheck != 'u' )
     {
         std::cout << "Invalid input format, try again.\n";
         goto trycategory;
     }
-    std::cin >> temp_categ;
+    temp_categ = stoi(cat_input.substr(1, 2));
     if ( temp_categ == 6 || temp_categ == 8 || temp_categ == 10 || temp_categ == 12 || temp_categ == 14 || temp_categ == 17 )
     {
         //donothing
@@ -282,8 +285,10 @@ int generateList()
     std::string filename;
     // Get proper output file
     tryfilename:
-    std::cout << "Enter an output file in the form of \"filename.txt\"\n";
-    std::getline(std::cin, filename);
+    std::cout << "Enter an output file in the form of \"filename.txt\" ... ";
+    std::cin.clear();
+    std::cin.ignore();
+    std::cin >> filename;
     std::ofstream fout;
     std::ifstream fin;
     fin.open(filename);
@@ -292,7 +297,7 @@ int generateList()
         std::cout << "Bad filename, try again...\n";
         goto tryfilename;
     }
-    else if ( fin.peek() )
+    else if ( fin.peek() != EOF )
     {
         fin.close();
         char overwrite;

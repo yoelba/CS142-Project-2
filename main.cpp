@@ -96,4 +96,6 @@ int main()
             case 6: break;
         }
     }
+    outputData();
+
 }
